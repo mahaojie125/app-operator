@@ -1,0 +1,16 @@
+domain: operator.com
+layout:
+- go.kubebuilder.io/v3
+projectName: app-operator
+repo: app-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: operator.com
+  group: app
+  kind: App
+  path: app-operator/api/v1
+  version: v1
+version: "3"

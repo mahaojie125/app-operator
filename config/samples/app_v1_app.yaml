@@ -1,0 +1,34 @@
+apiVersion: app.operator.com/v1
+kind: App
+metadata:
+  name: app-nginx
+  namespace: test
+spec:
+  deployConfig:
+    image: nginx:latest
+    replicas: 2
+    port: 80
+    envs:
+    - name: DEMO
+      value: nginx
+    - name: GOPATH
+      value: gopath
+    resources:
+      limits:
+        cpu: 30m
+        memory: 50Mi
+      requests:
+        cpu: 30m
+        memory: 50Mi
+  serviceConfig:
+    enableService: true
+    servicePorts:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 80
+      nodePort: 30001
+    serviceType: NodePort
+  ingressConfig:
+    enableIngress: true
+    ingressHost: app-sample.mahaojie.tech

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.ObjectMeta.Name}}
+  namespace: {{.ObjectMeta.Namespace}}
+  labels:
+    app-operator: {{.ObjectMeta.Name}}
+spec:
+  selector:
+    app-operator: {{.ObjectMeta.Name}}
+#  ports: {{.Spec.ServiceConfig.ServicePorts}}

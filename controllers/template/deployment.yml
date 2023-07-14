@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.ObjectMeta.Name}}
+  namespace: {{.ObjectMeta.Namespace}}
+  labels:
+    app-operator: {{.ObjectMeta.Name}}
+spec:
+  replicas: {{.Spec.DeployConfig.Replicas}}
+  selector:
+    matchLabels:
+      app-operator: {{.ObjectMeta.Name}}
+  template:
+    metadata:
+      labels:
+        app-operator: {{.ObjectMeta.Name}}
+    spec:
+#      affinity: {{.Spec.DeployConfig.Affinity}}
+#      volumes: {{.Spec.DeployConfig.Volumes}}
+      containers:
+        - name: {{.ObjectMeta.Name}}
+          image: {{.Spec.DeployConfig.Image}}
+          ports:
+          - containerPort: {{.Spec.DeployConfig.Port}}
+#          env: {{.Spec.DeployConfig.Envs}}
+#          livenessProbe: {{.Spec.DeployConfig.LivenessProbe}}
+#          readinessProbe: {{.Spec.DeployConfig.ReadinessProbe}}
+#          resources: {{.Spec.DeployConfig.Resources}}
+#          volumeMounts: {{.Spec.DeployConfig.VolumeMounts}}
